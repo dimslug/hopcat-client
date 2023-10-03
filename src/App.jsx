@@ -1,5 +1,14 @@
 import logo from "./logo.svg";
 import "./App.css";
+import Calendar from "./calendar";
+
+function App() {
+  return (
+    <div className="App">
+      <Calendar />
+    </div>
+  );
+}
 
 function App() {
   return (
