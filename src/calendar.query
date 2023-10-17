@@ -1,0 +1,16 @@
+import * as FullCalendar from '@fullcalendar/core';
+
+export const calendarQuery = async () => {
+  // Get the current date.
+  const today = new Date();
+
+  // Create a FullCalendar event object.
+  const event = {
+    title: 'My Event',
+    start: today,
+    end: today.add(1, 'hour'),
+  };
+
+  // Return the event object.
+  return [event];
+};
