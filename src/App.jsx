@@ -19,7 +19,7 @@ function App() {
   const [sessiontoken, setSessionToken] = useState("");
   const [creatorID, setCreatorID] = useState("");
 
-  console.log("Token: ", sessionToken);
+  console.log("Token: ", sessiontoken);
 
     const updateToken = (newToken) => {
       localStorage.setItem("token", newToken);
@@ -49,16 +49,14 @@ function App() {
     {/* {sessiontoken !== "" ? (
       <Logout setSessionToken={setSessionToken} />
     ) : null} */}
-    
+       <Nav setSessionToken={setSessionToken}
+        sessiontoken={sessiontoken} />
     <Routes>
       <Route path="/" element={<Auth 
       updateToken={updateToken} 
       updateCreatorID={updateCreatorID}
         />} />
     
-    {/* </Routes>
-    
-    <Routes> */}
     <Route path="/creator/frontpage" element={<CreatorIndex 
     setSessionToken={setSessionToken}
     sessiontoken={sessiontoken} 
@@ -67,8 +65,7 @@ function App() {
     />
     }
     />
-    {/* </Routes>
-    <Routes> */}
+  
     <Route path="/creator/drinks" element={<CreatorIndex 
     setSessionToken={setSessionToken}
     sessiontoken={sessiontoken}
@@ -78,8 +75,7 @@ function App() {
     />
     }
     />
-    {/* </Routes>
-    <Routes> */}
+ 
     <Route path="/creator/promos" element={<CreatorIndex 
     setSessionToken={setSessionToken}
     sessiontoken={sessiontoken}
@@ -89,8 +85,7 @@ function App() {
     />
     }
     />
-    {/* </Routes>
-    <Routes> */}
+ 
          <Route path="/creator/create" element={<CreateIndex 
     setSessionToken={setSessionToken}
     sessiontoken={sessiontoken}
@@ -100,7 +95,7 @@ function App() {
     />
     }
     />
-             <Route path="/creator/edit" element={<EditIndex 
+        <Route path="/creator/edit" element={<EditIndex 
     setSessionToken={setSessionToken}
     sessiontoken={sessiontoken}
     setCreatorID={setCreatorID} 
@@ -110,10 +105,9 @@ function App() {
     }
     />
 
-      <Nav setSessionToken={setSessionToken}
-        sessionToken={sessionToken} />
+   
         
-      <Routes>
+      
         <Route path="/" element={<Auth updateToken={updateToken} />} />
         <Route path="/inflHome" element={<InflHome updateToken={updateToken} />} />
 
