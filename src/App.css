@@ -1,7 +1,6 @@
 .App {
   text-align: center;
 }
-
 body {
   background-image: radial-gradient(#00FFFF 20%, transparent 20%),
      radial-gradient(#00FFFF 20%, transparent 20%);
@@ -38,3 +37,4 @@ body {
   background-color: white; /* White background on hover */
   color: red; /* Red text on hover */
 }
+
