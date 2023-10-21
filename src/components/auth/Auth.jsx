@@ -8,6 +8,7 @@ import { Button, Col, Container, Row } from 'reactstrap';
 function Auth(props) {
 
     const [button, setButton] = useState('Signup')
+    const [typeButton, setTypeButton] = useState('Influencer')
 
     const swapForm = () => {
         button === "Login" ?
@@ -15,9 +16,16 @@ function Auth(props) {
             setButton('Login')
     }
 
+    const swapFormType = () => {
+        typeButton === "Influencer" ?
+            setTypeButton('Creator') :
+            setTypeButton('Influencer')
+    }
+
     const displayForm = () => {
         return (
-            button === "Login" ?
+            typeButton === "Influencer" ?
+                button === "Login" ?
                 <Row>
                     <Col md="6">
 
@@ -25,10 +33,7 @@ function Auth(props) {
                             updateToken={props.updateToken}
                             updateCreatorID={props.updateCreatorID}
 />
-                        <InflSignup
-                            updateToken={props.updateToken}
-
-                        />
+                     
                     </Col>
                 </Row> :
                 <Row>
@@ -38,28 +43,49 @@ function Auth(props) {
                             updateToken={props.updateToken}
                             updateCreatorID={props.updateCreatorID}
 />
-                        <InflLogin
+                     
+                    </Col>
+                </Row>
+
+            :
+            button === "Login" ?
+            <Row>
+                <Col md="6">
+                <InflSignup
+                            updateToken={props.updateToken}
+
+                        />
+
+                </Col>
+            </Row> :
+            <Row>
+                <Col md="6">
+                <InflLogin
                             updateToken={props.updateToken}
                             username={props.currentUsername}
 
                         />
-                    </Col>
-                </Row>
+                </Col>
+            </Row>
         )
     }
-
+    
     return (
         <>
 
 
             <Container>
                 {displayForm()}
+                <Row>
                 <Button onClick={swapForm} color='dark'>{button}</Button>
+                <Button onClick={swapFormType} color='dark'>{typeButton}</Button>
+                </Row>
             </Container>
 
 
         </>
     )
+   
 }
 
 export default Auth

@@ -65,6 +65,7 @@ function App() {
     sessiontoken={sessiontoken} 
     setCreatorID={setCreatorID}
     creatorID={creatorID}
+    currentPage={'drinks'}
     />
     }
     />

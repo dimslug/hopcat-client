@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import { Form, FormGroup, Input, Label, Button } from 'reactstrap'
 import { useNavigate } from 'react-router-dom';
+import FullButton from '../../buttons/FullButton';
 
 function InflSignup( {updateToken} ) {
 
@@ -122,7 +123,9 @@ function InflSignup( {updateToken} ) {
                         Password
                     </Label>
                 </FormGroup>
+                <FullButton>
                 <Button type='submit' color='dark'>Sign Up</Button>
+                </FullButton>
             </Form>
         </>
     )
