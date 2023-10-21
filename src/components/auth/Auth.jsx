@@ -8,7 +8,7 @@ import { Button, Col, Container, Row } from 'reactstrap';
 function Auth(props) {
 
     const [button, setButton] = useState('Signup')
-    const [typeButton, setTypeButton] = useState('Influencer')
+    const [typeButton, setTypeButton] = useState('Creator')
 
     const swapForm = () => {
         button === "Login" ?

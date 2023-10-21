@@ -5,11 +5,6 @@ import { REACT_APP_GOOGLE_API_KEY } from "../../environments";
 const libraries = ['places'];
 const google = window.google;
 
-console.log('Inside Place Component')
-
-
-
-
 const PlaceComponent = ({ onAddressSelected, currentAddress }) => {
     const inputRef = useRef();
 
