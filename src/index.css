@@ -2,6 +2,7 @@
 
 @layer base {
   html {
+    font-size: 135%;
     @apply tw-text-neutral-800;
   }
   html.dark {
