@@ -82,7 +82,7 @@ function Login({ updateToken, updateCreatorID }, {}) {
           <Label for="passwordSignup">Password</Label>
         </FormGroup>
                 <FullButton>
-                    <Button type='submit'>Login</Button>
+                    <Button type='submit' color='dark'>Login</Button>
                 </FullButton>
             </Form>
         </>

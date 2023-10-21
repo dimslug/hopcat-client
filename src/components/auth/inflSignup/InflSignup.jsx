@@ -55,7 +55,7 @@ function InflSignup( {updateToken} ) {
 
     return (
         <>
-            <h2>Sign Up</h2>
+            <h2>Influencer Sign Up</h2>
             <Form onSubmit={handleSubmit}>
                 <FormGroup floating>
                     <Input type="text"
