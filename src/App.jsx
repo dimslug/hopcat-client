@@ -1,8 +1,6 @@
 
 
-import Calendar from "./calendar";
-
-
+// import Calendar from "./calendar";
 import "./App.css";
 import Auth from "./components/auth/Auth";
 import { useEffect, useState } from "react";

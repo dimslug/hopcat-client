@@ -11,10 +11,11 @@ import {
   CardText,
   Container,
   Button,
+  Row,
 } from "reactstrap";
 import { TEInput } from "tw-elements-react"
 import { baseURL } from "../../environments";
-import { useNavigate } from "react-router-dom";
+import { Route, useNavigate } from "react-router-dom";
 
 export default function DrinkAccordion({
   setSessionToken,
@@ -97,12 +98,15 @@ export default function DrinkAccordion({
           <AccordionItem>
             <AccordionHeader targetId={drink._id}>{drink.name}</AccordionHeader>
             <AccordionBody accordionId={drink._id}>
-              <Card className="card"
+              <Row className="d-flex justify-content-center">
+              <Card className="card rounded-lg"
                 style={{
                   width: "18rem",
                 }}
               >
-                <img alt="Sample" src="https://picsum.photos/300/200" />
+                <div className="card-image-container">
+                <img alt="Sample" class="card-image" src="https://picsum.photos/300/200" />
+                </div>
                 <CardBody>
                   <CardSubtitle className="mb-2 text-muted" tag="h6">
                     <p>{drink.description}</p>
@@ -154,6 +158,7 @@ export default function DrinkAccordion({
                   </Button>
                 </CardBody>
               </Card>
+              </Row>
             </AccordionBody>
           </AccordionItem>
         </Accordion>
