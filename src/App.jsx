@@ -53,8 +53,7 @@ function App() {
     {/* {sessiontoken !== "" ? (
       <Logout setSessionToken={setSessionToken} />
     ) : null} */}
-       <Nav setSessionToken={setSessionToken}
-        sessiontoken={sessiontoken} />
+     
     <Routes>
       <Route path="/" element={<Auth 
       updateToken={updateToken} 
@@ -113,7 +112,11 @@ function App() {
         
       
         <Route path="/" element={<Auth updateToken={updateToken} />} />
-        <Route path="/inflHome" element={<InflHome updateToken={updateToken} />} />
+        <Route path="/inflHome" element={<InflHome 
+        updateToken={updateToken}
+        setSessionToken={setSessionToken}
+        sessiontoken={sessiontoken}
+         />} />
 
       </Routes>
 
