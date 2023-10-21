@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Table, Tooltip, Button, Collapse } from 'reactstrap'
+import { baseURL } from "../../environments";
 
 function UpcomingPromos() {
 
@@ -22,12 +23,12 @@ function UpcomingPromos() {
     const promoData = [];
 
     const fetchPromos = async () => {
-        const url = 'http://localhost:4010/promo/upcoming';
+        const url = `${baseURL}/promo/upcoming/bydate`;
 
         const requestOptions = {
             method: 'GET',
             headers: new Headers({
-                "Authorization": `Bearer ${localStorage.getItem('token')}`,                
+                Authorization: `${localStorage.getItem('token')}`,                
             })
         }
 
