@@ -14,6 +14,7 @@ import Footer from "./components/footer/Footer";
 import CreatorIndex from "./components/creator/CreatorIndex";
 import CreateIndex from "./components/createforms/CreateIndex";
 import EditIndex from "./components/editforms/EditIndex";
+import ReviewPromo from "./components/inflhome/ReviewPromo";
 
 
 function App() {
@@ -114,6 +115,11 @@ function App() {
       
         <Route path="/" element={<Auth updateToken={updateToken} />} />
         <Route path="/inflHome" element={<InflHome 
+        updateToken={updateToken}
+        setSessionToken={setSessionToken}
+        sessiontoken={sessiontoken}
+         />} />
+          <Route path="/inflHome/reviewPromo" element={<ReviewPromo 
         updateToken={updateToken}
         setSessionToken={setSessionToken}
         sessiontoken={sessiontoken}

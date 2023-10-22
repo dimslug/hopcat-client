@@ -123,7 +123,7 @@ export default function DisplayPromo(
                         color="success"
                         onClick={() =>
                           navigate(
-                            `/creator/edit?drink_id=${promo[0].drinkID}&currentPage=promos&promo_id=${promo._id}`
+                            `/inflHome/reviewPromo?drink_id=${promo[0].drinkID}&promo_id=${promo[0]._id}`
                           )
                         }
                       >
