@@ -122,10 +122,9 @@ function App() {
         }
         />
 
-   
         
-      
-<Route path="/" element={<Auth updateToken={updateToken}
+
+          <Route path="/" element={<Auth updateToken={updateToken}
           updateInflID={updateInflID}
           inflID={inflID}
           />} />
