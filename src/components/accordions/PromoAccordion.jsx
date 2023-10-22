@@ -11,6 +11,7 @@ import {
   CardText,
   Container,
   Button,
+  Row,
 } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 import { baseURL } from "../../environments";
@@ -113,6 +114,7 @@ export default function DrinkAccordion({
                   {promo.promoText}
                 </AccordionHeader>
                 <AccordionBody accordionId={promo._id}>
+                  <Row className="d-flex justify-content-center">
                   <Card
                     style={{
                       width: "18rem",
@@ -149,6 +151,7 @@ export default function DrinkAccordion({
                       </Button>
                     </CardBody>
                   </Card>
+                  </Row>
                 </AccordionBody>
               </AccordionItem>
             </Accordion>
