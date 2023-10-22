@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import FullButton from "../buttons/FullButton";
 import { baseURL } from "../../environments";
 import PlaceComponent from "../placecomponent/PlaceComponent";
+import DisplayPromo from "../inflhome/DisplayPromo"
 
 export default function PromoEdit(props) {
   const sessiontoken = props.sessiontoken;
@@ -101,6 +102,11 @@ const handleAddressSelected = (address) => {
    console.log(endDateFormatted)
    
     return (
+      <>
+      <DisplayPromo 
+      promoID={promoID}
+      />
+    
       <Form onSubmit={handleSubmit}>
         <FormGroup floating>
          
@@ -128,6 +134,7 @@ const handleAddressSelected = (address) => {
           <Button color="success">Edit Promo</Button>
         </FullButton>
       </Form>
+      </>
     );
   };
 
