@@ -6,11 +6,11 @@ import '../../../App.css'
 
 function Logout({ setSessionToken, setCreatorID }) {
 
-    const navigate = useNavigate();
-  
-    const signout = () => {
+  const navigate = useNavigate();
 
-   
+  const signout = () => {
+
+
 
     localStorage.removeItem("token");
     setSessionToken("");
@@ -26,11 +26,11 @@ function Logout({ setSessionToken, setCreatorID }) {
 
   return (
     <>
-      <Button class="custom-button" 
-      color="danger" 
-      // outline style={style} 
-      
-      onClick= {signout}>
+      <Button class="custom-button"
+        color="danger"
+        // outline style={style} 
+
+        onClick={signout}>
         Signout
       </Button>
     </>
