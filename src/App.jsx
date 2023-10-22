@@ -21,97 +21,109 @@ function App() {
   // Token use state set up
   const [sessiontoken, setSessionToken] = useState("");
   const [creatorID, setCreatorID] = useState("");
+  const [inflID, setInflID] = useState("")
 
   console.log("Token: ", sessiontoken);
 
-    const updateToken = (newToken) => {
-      localStorage.setItem("token", newToken);
-      setSessionToken(newToken);
-    };
+  const updateToken = (newToken) => {
+    localStorage.setItem("token", newToken);
+    setSessionToken(newToken);
+  };
 
-    const updateCreatorID = (newCreatorID) => {
-      localStorage.setItem('creatorID', newCreatorID)
-      setCreatorID(newCreatorID);
+  const updateCreatorID = (newCreatorID) => {
+    localStorage.setItem('creatorID', newCreatorID)
+    setCreatorID(newCreatorID);
+  }
+
+  const updateInflID = (newInflID) => {
+    localStorage.setItem('influencerID', newInflID)
+    setInflID(newInflID);
+  }
+  // Token use ref set up
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+
+      setSessionToken(localStorage.getItem("token"));
     }
-  
-   // Token use ref set up
-    useEffect(() => {
-      if (localStorage.getItem("token")) {
-   
-        setSessionToken(localStorage.getItem("token"));
-      }
-    }, []);
+  }, []);
 
-    const location = useLocation();
-    const queryParams = new URLSearchParams(location.search);
-    const currentPageProp = queryParams.get('currentPage');
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const currentPageProp = queryParams.get('currentPage');
 
 
   return (
 
     <div className="App">
 
-    {/* {sessiontoken !== "" ? (
+      {/* {sessiontoken !== "" ? (
       <Logout setSessionToken={setSessionToken} />
     ) : null} */}
-     
-    <Routes>
-      <Route path="/" element={<Auth 
-      updateToken={updateToken} 
-      updateCreatorID={updateCreatorID}
-        />} />
-    
-    <Route path="/creator/frontpage" element={<CreatorIndex 
-    setSessionToken={setSessionToken}
-    sessiontoken={sessiontoken} 
-    setCreatorID={setCreatorID}
-    creatorID={creatorID}
-    currentPage={'drinks'}
-    />
-    }
-    />
-  
-    <Route path="/creator/drinks" element={<CreatorIndex 
-    setSessionToken={setSessionToken}
-    sessiontoken={sessiontoken}
-    setCreatorID={setCreatorID} 
-    creatorID={creatorID}
-    currentPage={'drinks'}
-    />
-    }
-    />
- 
-    <Route path="/creator/promos" element={<CreatorIndex 
-    setSessionToken={setSessionToken}
-    sessiontoken={sessiontoken}
-    setCreatorID={setCreatorID} 
-    creatorID={creatorID}
-    currentPage={'promos'}
-    />
-    }
-    />
- 
-         <Route path="/creator/create" element={<CreateIndex 
-    setSessionToken={setSessionToken}
-    sessiontoken={sessiontoken}
-    setCreatorID={setCreatorID} 
-    creatorID={creatorID}
-    currentPage={currentPageProp}
-    />
-    }
-    />
-        <Route path="/creator/edit" element={<EditIndex 
-    setSessionToken={setSessionToken}
-    sessiontoken={sessiontoken}
-    setCreatorID={setCreatorID} 
-    creatorID={creatorID}
-    currentPage={currentPageProp}
-    />
-    }
-    />
+    <Nav setSessionToken={setSessionToken}
+          sessionToken={sessiontoken} />
 
-   
+      <Routes>
+        <Route path="/" element={<Auth
+          updateToken={updateToken}
+          updateCreatorID={updateCreatorID}
+        />} />
+
+        {/* </Routes>
+    
+    <Routes> */}
+        <Route path="/creator/frontpage" element={<CreatorIndex
+          setSessionToken={setSessionToken}
+          sessiontoken={sessiontoken}
+          setCreatorID={setCreatorID}
+          creatorID={creatorID}
+        />
+        }
+        />
+        {/* </Routes>
+    <Routes> */}
+        <Route path="/creator/drinks" element={<CreatorIndex
+          setSessionToken={setSessionToken}
+          sessiontoken={sessiontoken}
+          setCreatorID={setCreatorID}
+          creatorID={creatorID}
+          currentPage={'drinks'}
+        />
+        }
+        />
+        {/* </Routes>
+    <Routes> */}
+        <Route path="/creator/promos" element={<CreatorIndex
+          setSessionToken={setSessionToken}
+          sessiontoken={sessiontoken}
+          setCreatorID={setCreatorID}
+          creatorID={creatorID}
+          currentPage={'promos'}
+        />
+        }
+        />
+        {/* </Routes>
+    <Routes> */}
+        <Route path="/creator/create" element={<CreateIndex
+          setSessionToken={setSessionToken}
+          sessiontoken={sessiontoken}
+          setCreatorID={setCreatorID}
+          creatorID={creatorID}
+          currentPage={currentPageProp}
+        />
+        }
+        />
+        <Route path="/creator/edit" element={<EditIndex
+          setSessionToken={setSessionToken}
+          sessiontoken={sessiontoken}
+          setCreatorID={setCreatorID}
+          creatorID={creatorID}
+          currentPage={currentPageProp}
+        />
+        }
+        />
+
         
+
       
         <Route path="/" element={<Auth updateToken={updateToken} />} />
         <Route path="/inflHome" element={<InflHome 
@@ -125,9 +137,23 @@ function App() {
         sessiontoken={sessiontoken}
          />} />
 
-      </Routes>
 
-      <Footer />
+
+
+          <Route path="/" element={<Auth updateToken={updateToken}
+          updateInflID={updateInflID}
+          inflID={inflID}
+          />} />
+          <Route path="/inflHome" element={<InflHome 
+          updateToken={updateToken} 
+          setInflID={setInflID}
+          inflID={inflID}
+          />} />
+          
+
+        </Routes>
+
+        <Footer />
     </div>
 
   );

@@ -26,47 +26,49 @@ function Auth(props) {
         return (
             typeButton === "Influencer" ?
                 button === "Login" ?
-                <Row>
-                    <Col md="6">
 
-                        <CreatorSignup
-                            updateToken={props.updateToken}
-                            updateCreatorID={props.updateCreatorID}
-/>
-                     
-                    </Col>
-                </Row> :
-                <Row>
-                    <Col md="6">
+                    <Row>
+                        <Col md="6">
 
-                        <CreatorLogin
-                            updateToken={props.updateToken}
-                            updateCreatorID={props.updateCreatorID}
-/>
-                     
-                    </Col>
-                </Row>
+                            <CreatorSignup
+                                updateToken={props.updateToken}
+                                updateCreatorID={props.updateCreatorID}
+                            />
 
-            :
-            button === "Login" ?
-            <Row>
-                <Col md="6">
-                <InflSignup
-                            updateToken={props.updateToken}
+                        </Col>
+                    </Row> :
+                    <Row>
+                        <Col md="6">
 
-                        />
+                            <CreatorLogin
+                                updateToken={props.updateToken}
+                                updateCreatorID={props.updateCreatorID}
+                            />
 
-                </Col>
-            </Row> :
-            <Row>
-                <Col md="6">
-                <InflLogin
-                            updateToken={props.updateToken}
-                            username={props.currentUsername}
+                        </Col>
+                    </Row>
 
-                        />
-                </Col>
-            </Row>
+                :
+                button === "Login" ?
+                    <Row>
+                        <Col md="6">
+                            <InflSignup
+                                updateToken={props.updateToken}
+
+                            />
+
+                        </Col>
+                    </Row> :
+                    <Row>
+                        <Col md="6">
+                            <InflLogin
+                                updateToken={props.updateToken}
+                                username={props.currentUsername}
+
+                            />
+                        </Col>
+                    </Row>
+
         )
     }
     
@@ -77,6 +79,7 @@ function Auth(props) {
             <Container>
                 {displayForm()}
                 <Row>
+
                 <Button onClick={swapForm} color='dark'>{button}</Button>
                 <Button onClick={swapFormType} color='dark'>{typeButton}</Button>
                 </Row>
@@ -85,7 +88,6 @@ function Auth(props) {
 
         </>
     )
-   
 }
 
 export default Auth

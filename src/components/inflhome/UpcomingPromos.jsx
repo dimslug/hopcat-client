@@ -1,8 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { Table, Tooltip, Button, Collapse } from 'reactstrap'
 import { baseURL } from "../../environments";
 
 function UpcomingPromos() {
+    const navigate = useNavigate();
 
     const [tooltipOpen, setTooltipOpen] = useState(false);
 
@@ -18,9 +20,9 @@ function UpcomingPromos() {
     const onExiting = () => setStatus(false);
     const onExited = () => setStatus(false);
 
-    // fetch promo data from backend and map over it to populate table
+    const [promosData, setPromosData] = useState([])
 
-    const promoData = [];
+    // fetch promo data from backend and map over it to populate table
 
     const fetchPromos = async () => {
         const url = `${baseURL}/promo/upcoming/bydate`;
@@ -28,7 +30,8 @@ function UpcomingPromos() {
         const requestOptions = {
             method: 'GET',
             headers: new Headers({
-                Authorization: `${localStorage.getItem('token')}`,                
+
+                "Authorization": `${localStorage.getItem('token')}`,
             })
         }
 
@@ -36,7 +39,9 @@ function UpcomingPromos() {
             const res = await fetch(url, requestOptions);
             const data = await res.json();
             console.log(data)
-            promoData.push(data)
+            setPromosData(data.results)
+            console.log(promosData)
+
         } catch (err) {
             console.log(err.message)
         }
@@ -49,11 +54,6 @@ function UpcomingPromos() {
         }
     }, [localStorage.getItem('token')])
 
-
-
-
-
-
     return (
         <>
             <h2>Upcoming Events</h2>
@@ -65,62 +65,37 @@ function UpcomingPromos() {
                 size="sm"
             >
                 <tbody>
-                    <tr
-                        id='target'
-                    >
-                        <td>Drink Name</td>
-                        <td>Drink Description</td>
-                        <td>Creator / Establishment</td>
-                        <td>Promo Date/Time</td>
-                        <Tooltip
-                            isOpen={tooltipOpen}
-                            target='target'
-                            toggle={toggle}
-                        > <img src="https://placehold.co/200" alt="" />
-                        </Tooltip>
-                    </tr>
-                    <tr
-                        id='target'
-                    >
-                        <td>Drink Name</td>
-                        <td>Drink Description</td>
-                        <td>Creator / Establishment</td>
-                        <td>Promo Date/Time</td>
-                        <Tooltip
-                            isOpen={tooltipOpen}
-                            target='target'
-                            toggle={toggle}
-                        > <img src="https://placehold.co/200" alt="" />
-                        </Tooltip>
-                    </tr>
-                    <tr
-                        id='target'
-                    >
-                        <td>Drink Name</td>
-                        <td>Drink Description</td>
-                        <td>Creator / Establishment</td>
-                        <td>Promo Date/Time</td>
-                        <Tooltip
-                            isOpen={tooltipOpen}
-                            target='target'
-                            toggle={toggle}
-                        > <img src="https://placehold.co/200" alt="" />
-                        </Tooltip>
-                    </tr>
-                    <tr
-                        id='target'
-                    >
-                        <td>Drink Name</td>
-                        <td>Drink Description</td>
-                        <td>Creator / Establishment</td>
-                        <td>Promo Date/Time</td>
-                        <Tooltip
-                            isOpen={tooltipOpen}
-                            target='target'
-                            toggle={toggle}
-                        > <img src="https://placehold.co/200" alt="" />
-                        </Tooltip>
-                    </tr>
+                    {
+                        promosData.slice(0,5).map((promos) => {
+                            const startDateFormatter = new Date(promos.startDate);
+                            const startDateFomatted = startDateFormatter.toLocaleDateString(
+                                "en-US",
+                                {
+                                    day: "numeric",
+                                    month: "short",
+                                    year: "numeric",
+                                }
+                            );
+                            return (
+                                <tr
+                                    onClick={() => navigate(`/promo/${promos._id}`)}
+                                    id='target'
+                                >
+                                    <td>{promos.drinkID.name}</td>
+                                    <td>{promos.drinkID.description}</td>
+                                    <td>{promos.creatorID.firstName + " " + promos.creatorID.lastName}</td>
+                                    <td>{startDateFomatted}</td>
+                                    <Tooltip
+                                        isOpen={tooltipOpen}
+                                        target='target'
+                                        toggle={toggle}
+                                    > <img src="https://placehold.co/200" alt="" />
+                                    </Tooltip>
+                                </tr>
+                            )
+                        })
+                    }
+
                 </tbody>
             </Table>
             <Button onClick={showMore} style={{ alignSelf: 'center' }} hidden={status}>
@@ -139,62 +114,37 @@ function UpcomingPromos() {
                     size="sm"
                 >
                     <tbody>
-                        <tr
-                            id='target'
-                        >
-                            <td>Drink Name</td>
-                            <td>Drink Description</td>
-                            <td>Creator / Establishment</td>
-                            <td>Promo Date/Time</td>
-                            <Tooltip
-                                isOpen={tooltipOpen}
-                                target='target'
-                                toggle={toggle}
-                            > <img src="https://placehold.co/200" alt="" />
-                            </Tooltip>
-                        </tr>
-                        <tr
-                            id='target'
-                        >
-                            <td>Drink Name</td>
-                            <td>Drink Description</td>
-                            <td>Creator / Establishment</td>
-                            <td>Promo Date/Time</td>
-                            <Tooltip
-                                isOpen={tooltipOpen}
-                                target='target'
-                                toggle={toggle}
-                            > <img src="https://placehold.co/200" alt="" />
-                            </Tooltip>
-                        </tr>
-                        <tr
-                            id='target'
-                        >
-                            <td>Drink Name</td>
-                            <td>Drink Description</td>
-                            <td>Creator / Establishment</td>
-                            <td>Promo Date/Time</td>
-                            <Tooltip
-                                isOpen={tooltipOpen}
-                                target='target'
-                                toggle={toggle}
-                            > <img src="https://placehold.co/200" alt="" />
-                            </Tooltip>
-                        </tr>
-                        <tr
-                            id='target'
-                        >
-                            <td>Drink Name</td>
-                            <td>Drink Description</td>
-                            <td>Creator / Establishment</td>
-                            <td>Promo Date/Time</td>
-                            <Tooltip
-                                isOpen={tooltipOpen}
-                                target='target'
-                                toggle={toggle}
-                            > <img src="https://placehold.co/200" alt="" />
-                            </Tooltip>
-                        </tr>
+                    {
+                        promosData.slice(5,10).map((promos) => {
+                            const startDateFormatter = new Date(promos.startDate);
+                            const startDateFomatted = startDateFormatter.toLocaleDateString(
+                                "en-US",
+                                {
+                                    day: "numeric",
+                                    month: "short",
+                                    year: "numeric",
+                                }
+                            );
+                            return (
+                                <tr
+                                onClick={() => navigate(`/promo/${promos._id}`)}
+                                    id='target'
+                                >
+                                    <td>{promos.drinkID.name}</td>
+                                    <td>{promos.drinkID.description}</td>
+                                    <td>{promos.creatorID.firstName + " " + promos.creatorID.lastName}</td>
+                                    <td>{startDateFomatted}</td>
+                                    <Tooltip
+                                        isOpen={tooltipOpen}
+                                        target='target'
+                                        toggle={toggle}
+                                    > <img src="https://placehold.co/200" alt="" />
+                                    </Tooltip>
+                                </tr>
+                            )
+                        })
+                    }
+
                     </tbody>
                 </Table>
                 <Button onClick={showMore} style={{ alignSelf: 'center' }} hidden={!status}>
