@@ -37,10 +37,17 @@ export default function DrinkAccordion({
     }
   };
 
-  //! UseStates
+  //! useStates
   const [promos, setPromos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState("1");
+
+  //! useEffects
+    useEffect(() => {
+      fetchPromos();
+      console.log(promos);
+      // displaypromos();
+    }, [sessiontoken]);
 
   //! Fetch Promos
   const fetchPromos = async () => {
@@ -115,12 +122,14 @@ export default function DrinkAccordion({
                 </AccordionHeader>
                 <AccordionBody accordionId={promo._id}>
                   <Row className="d-flex justify-content-center">
-                  <Card
+                  <Card className="card rounded-lg"
                     style={{
                       width: "18rem",
                     }}
                   >
-                    <img alt="Sample" src="https://picsum.photos/300/200" />
+                     <div className="card-image-container">
+                    <img alt="Sample" class="card-image" src="https://picsum.photos/300/200" />
+                    </div>
                     <CardBody>
                       <CardSubtitle className="mb-2 text-muted" tag="h6">
                         <p>Promo Active Between Start and End date Below</p>
@@ -129,8 +138,8 @@ export default function DrinkAccordion({
                         <ul>
                           <li>Start Date: {startDateFomatted}</li>
                           <li>End Date: {endDateFomatted}</li>
-                          {promo.promoPlace ? ( <li>Location: {promo.promoPlace.formattedAddress}</li>) : null}
-                         
+                          {promo.promoPlace ? (<li>Location: {promo.promoPlace.formattedAddress}</li>) : null}
+
                         </ul>
                       </CardText>
                       <Button
@@ -161,11 +170,7 @@ export default function DrinkAccordion({
     );
   };
 
-  useEffect(() => {
-    fetchPromos();
-    console.log(promos);
-    // displaypromos();
-  }, [sessiontoken]);
+
 
   return <>{promos ? displayPromos() : null}</>;
 }

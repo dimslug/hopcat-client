@@ -20,11 +20,11 @@ import Logout from '../auth/logout/Logout';
 
 
 function HopSpotNav(props) {
-  
-   const sessiontoken = props.sessiontoken
-   const setSessionToken = props.setSessionToken
-   const creatorID = props.creatorID
-   const setCreatorID = props.setCreatorID
+
+  const sessiontoken = props.sessiontoken
+  const setSessionToken = props.setSessionToken
+  const creatorID = props.creatorID
+  const setCreatorID = props.setCreatorID
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -35,12 +35,12 @@ function HopSpotNav(props) {
       <Navbar className="navbar-custom navbarcustom" {...props}>
         <NavbarBrand className="navbarcustom navbar-brand" href="/">HopSpot</NavbarBrand>
         <NavbarToggler className="navbarcustom navbar-toggler" onClick={toggle}>
-        <div className='navbar-toggler-icon'></div>
+          <div className='navbar-toggler-icon'></div>
         </NavbarToggler>
         <Collapse isOpen={isOpen} navbar>
           <Nav className="me-auto custom-collapse" navbar>
             <NavItem>
-            <NavLink href="/components/">Profile</NavLink>
+              <NavLink href="/profile/">Profile</NavLink>
             </NavItem>
             <NavItem>
               <NavLink href="/creator/drinks">Drinks</NavLink>
@@ -66,12 +66,12 @@ function HopSpotNav(props) {
             </UncontrolledDropdown>
             {/* <NavbarText>Simple Text</NavbarText> */}
             {sessiontoken !== "" ? (
-      <Logout
-       setSessionToken={setSessionToken}
-       setCreatorID={setCreatorID}
-        />
-    ) : null}
-          </Nav >        
+              <Logout
+                setSessionToken={setSessionToken}
+                setCreatorID={setCreatorID}
+              />
+            ) : null}
+          </Nav >
         </Collapse>
       </Navbar>
     </>
