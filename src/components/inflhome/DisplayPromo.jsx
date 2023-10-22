@@ -9,15 +9,14 @@ import {
     Button,
     Row,
   } from "reactstrap";
-  import { useNavigate } from "react-router-dom";
+  import { useNavigate, useLocation } from "react-router-dom";
 import { baseURL } from "../../environments";
 import PlaceComponent from "../placecomponent/PlaceComponent";
 
-export default function DisplayPromo(
-    {
-        promoID,  
-      }
-) {
+export default function DisplayPromo() {
+  const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const promoID = queryParams.get('promo_id');
    
     console.log(promoID);
  
@@ -111,8 +110,6 @@ export default function DisplayPromo(
                         <ul>
                           <li>Start Date: {startDateFomatted}</li>
                           <li>End Date: {endDateFomatted}</li>
-                          {/* {promo[0].promoPlace ? ( <li>Location: {promo.promoPlace.formattedAddress}</li>) : null} */}
-                         
                         </ul>
                         <PlaceComponent 
          
