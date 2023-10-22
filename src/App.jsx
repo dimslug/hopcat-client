@@ -18,6 +18,7 @@ function App() {
   // Token use state set up
   const [sessiontoken, setSessionToken] = useState("");
   const [creatorID, setCreatorID] = useState("");
+  const [inflID, setInflID] = useState("")
 
   console.log("Token: ", sessiontoken);
 
@@ -31,6 +32,10 @@ function App() {
     setCreatorID(newCreatorID);
   }
 
+  const updateInflID = (newInflID) => {
+    localStorage.setItem('influencerID', newInflID)
+    setInflID(newInflID);
+  }
   // Token use ref set up
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -115,8 +120,16 @@ function App() {
         
 
 
-          <Route path="/" element={<Auth updateToken={updateToken} />} />
-          <Route path="/inflHome" element={<InflHome updateToken={updateToken} />} />
+          <Route path="/" element={<Auth updateToken={updateToken}
+          updateInflID={updateInflID}
+          inflID={inflID}
+          />} />
+          <Route path="/inflHome" element={<InflHome 
+          updateToken={updateToken} 
+          setInflID={setInflID}
+          inflID={inflID}
+          />} />
+          
 
         </Routes>
 

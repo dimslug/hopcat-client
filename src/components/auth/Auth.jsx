@@ -8,6 +8,7 @@ import { Button, Col, Container, Row } from 'reactstrap';
 function Auth(props) {
 
     const [button, setButton] = useState('Signup')
+    const [typeButton, setTypeButton] = useState('Creator')
 
     const swapForm = () => {
         button === "Login" ?
@@ -15,38 +16,57 @@ function Auth(props) {
             setButton('Login')
     }
 
+    const swapFormType = () => {
+        typeButton === "Influencer" ?
+            setTypeButton('Creator') :
+            setTypeButton('Influencer')
+    }
+
     const displayForm = () => {
         return (
-            button === "Login" ?
-                <Row>
-                    <Col md="6">
+            typeButton === "Influencer" ?
+                button === "Login" ?
+                    <Row>
+                        <Col md="6">
 
-                        <CreatorSignup
-                            updateToken={props.updateToken}
-                            updateCreatorID={props.updateCreatorID}
+                            <CreatorSignup
+                                updateToken={props.updateToken}
+                                updateCreatorID={props.updateCreatorID}
                             />
 
-                        <InflSignup
-                            updateToken={props.updateToken}
+                        </Col>
+                    </Row> :
+                    <Row>
+                        <Col md="6">
 
-                        />
-                    </Col>
-                </Row> :
-                <Row>
-                    <Col md="6">
-
-                        <CreatorLogin
-                            updateToken={props.updateToken}
-                            updateCreatorID={props.updateCreatorID}
+                            <CreatorLogin
+                                updateToken={props.updateToken}
+                                updateCreatorID={props.updateCreatorID}
                             />
 
-                        <InflLogin
-                            updateToken={props.updateToken}
-                            username={props.currentUsername}
+                        </Col>
+                    </Row>
 
-                        />
-                    </Col>
-                </Row>
+                :
+                button === "Login" ?
+                    <Row>
+                        <Col md="6">
+                            <InflSignup
+                                updateToken={props.updateToken}
+
+                            />
+
+                        </Col>
+                    </Row> :
+                    <Row>
+                        <Col md="6">
+                            <InflLogin
+                                updateToken={props.updateToken}
+                                username={props.currentUsername}
+
+                            />
+                        </Col>
+                    </Row>
         )
     }
 
@@ -56,12 +76,16 @@ function Auth(props) {
 
             <Container>
                 {displayForm()}
-                <Button onClick={swapForm} color='dark'>{button}</Button>
+                <Row>
+                    <Button onClick={swapForm} color='dark'>{button}</Button>
+                    <Button onClick={swapFormType} color='dark'>{typeButton}</Button>
+                </Row>
             </Container>
 
 
         </>
     )
+
 }
 
 export default Auth

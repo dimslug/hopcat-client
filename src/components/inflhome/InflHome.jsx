@@ -1,7 +1,8 @@
 import React from 'react'
 import UpcomingPromos from './UpcomingPromos'
 
-function InflHome() {
+function InflHome( props ) {
+    console.log(props)
     return (
         <>
         <UpcomingPromos />

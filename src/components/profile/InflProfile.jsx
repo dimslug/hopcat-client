@@ -1,5 +1,3 @@
-import React from 'react'
-
 import React from 'react';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
@@ -27,4 +25,4 @@ function ProfileForm() {
     );
 }
 
-export default 
+export default inflProfile;

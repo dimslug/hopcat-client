@@ -43,7 +43,7 @@ function InflLogin( {updateToken} ) {
 
     return (
         <>
-        <h2>Login</h2>
+        <h2>Influencer Login</h2>
             <Form onSubmit={handleSubmit}>
                 <FormGroup floating>
                     <Input 
