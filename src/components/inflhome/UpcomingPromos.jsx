@@ -17,12 +17,21 @@ function UpcomingPromos() {
     const onExiting = () => setStatus(false);
     const onExited = () => setStatus(false);
 
+    const drinkNameRef = useRef();
+    const drinkDescriptionRef = useRef();
+    const creatorNameRef = useRef();
+    const promoDateRef = useRef();
+
     // fetch promo data from backend and map over it to populate table
 
     const promoData = [];
 
     const fetchPromos = async () => {
         const url = 'http://localhost:4010/promo/upcoming';
+        const drinkName = drinkNameRef.current.value;
+        const drinkDescription = drinkDescriptionRef.current.value;
+        const creatorName = creatorNameRef.current.value;
+        const promoDate = promoDateRef.current.value;
 
         const requestOptions = {
             method: 'GET',

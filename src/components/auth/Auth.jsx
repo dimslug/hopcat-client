@@ -24,6 +24,7 @@ function Auth(props) {
                         <CreatorSignup
                             updateToken={props.updateToken}
                             updateCreatorID={props.updateCreatorID}
+                            />
 
                         <InflSignup
                             updateToken={props.updateToken}
@@ -37,6 +38,7 @@ function Auth(props) {
                         <CreatorLogin
                             updateToken={props.updateToken}
                             updateCreatorID={props.updateCreatorID}
+                            />
 
                         <InflLogin
                             updateToken={props.updateToken}
