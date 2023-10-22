@@ -26,6 +26,7 @@ function Auth(props) {
         return (
             typeButton === "Influencer" ?
                 button === "Login" ?
+
                     <Row>
                         <Col md="6">
 
@@ -67,9 +68,10 @@ function Auth(props) {
                             />
                         </Col>
                     </Row>
+
         )
     }
-
+    
     return (
         <>
 
@@ -77,15 +79,15 @@ function Auth(props) {
             <Container>
                 {displayForm()}
                 <Row>
-                    <Button onClick={swapForm} color='dark'>{button}</Button>
-                    <Button onClick={swapFormType} color='dark'>{typeButton}</Button>
+
+                <Button onClick={swapForm} color='dark'>{button}</Button>
+                <Button onClick={swapFormType} color='dark'>{typeButton}</Button>
                 </Row>
             </Container>
 
 
         </>
     )
-
 }
 
 export default Auth

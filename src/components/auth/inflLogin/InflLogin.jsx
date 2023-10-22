@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import { Form, FormGroup, Input, Label, Button } from 'reactstrap'
 import { useNavigate } from 'react-router-dom';
+import FullButton from '../../buttons/FullButton';
 
 function InflLogin( {updateToken} ) {
 
@@ -57,19 +58,21 @@ function InflLogin( {updateToken} ) {
                         Email
                     </Label>
                 </FormGroup>
-                <FormGroup>
+                <FormGroup floating>
                     <Input 
                         innerRef={passwordRef}
                         id='password'
                         name='password'
-                        placeholder='Password'
+                        placeholder='your password here'
                         type='password'
                     />
                     <Label for='password'>
                         Password
                     </Label>
                 </FormGroup>
+                <FullButton>
                 <Button type='submit' color='dark'>Login</Button>
+                </FullButton>
             </Form>
         </>
     )

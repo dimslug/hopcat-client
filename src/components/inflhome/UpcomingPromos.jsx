@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Table, Tooltip, Button, Collapse } from 'reactstrap'
+import { baseURL } from "../../environments";
 
 function UpcomingPromos() {
     const navigate = useNavigate();
@@ -24,12 +25,12 @@ function UpcomingPromos() {
     // fetch promo data from backend and map over it to populate table
 
     const fetchPromos = async () => {
-        const url = 'http://localhost:4010/promo/';
-
+        const url = `${baseURL}/promo/upcoming/bydate`;
 
         const requestOptions = {
             method: 'GET',
             headers: new Headers({
+
                 "Authorization": `${localStorage.getItem('token')}`,
             })
         }

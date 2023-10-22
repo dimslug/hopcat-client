@@ -1,4 +1,6 @@
 
+
+// import Calendar from "./calendar";
 import "./App.css";
 import Auth from "./components/auth/Auth";
 import { useEffect, useState } from "react";
@@ -48,9 +50,11 @@ function App() {
   const queryParams = new URLSearchParams(location.search);
   const currentPageProp = queryParams.get('currentPage');
 
+
   return (
 
     <div className="App">
+
       {/* {sessiontoken !== "" ? (
       <Logout setSessionToken={setSessionToken} />
     ) : null} */}
@@ -120,6 +124,7 @@ function App() {
         
 
 
+
           <Route path="/" element={<Auth updateToken={updateToken}
           updateInflID={updateInflID}
           inflID={inflID}
@@ -138,5 +143,6 @@ function App() {
 
   );
 }
+
 
 export default App;
