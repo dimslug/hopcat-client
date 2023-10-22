@@ -78,7 +78,7 @@ function UpcomingPromos() {
                             );
                             return (
                                 <tr
-                                    onClick={() => navigate(`/promo/${promos._id}`)}
+                                    onClick={() => navigate(`/inflHome/displayPromo?promo_id=${promos._id}`)}
                                     id='target'
                                 >
                                     <td>{promos.drinkID.name}</td>

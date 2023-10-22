@@ -15,6 +15,7 @@ import CreatorIndex from "./components/creator/CreatorIndex";
 import CreateIndex from "./components/createforms/CreateIndex";
 import EditIndex from "./components/editforms/EditIndex";
 import ReviewPromo from "./components/inflhome/ReviewPromo";
+import DisplayPromo from "./components/inflhome/DisplayPromo";
 
 
 function App() {
@@ -59,8 +60,7 @@ function App() {
       {/* {sessiontoken !== "" ? (
       <Logout setSessionToken={setSessionToken} />
     ) : null} */}
-    <Nav setSessionToken={setSessionToken}
-          sessionToken={sessiontoken} />
+ 
 
       <Routes>
         <Route path="/" element={<Auth
@@ -122,8 +122,6 @@ function App() {
         }
         />
 
-        
-
           <Route path="/" element={<Auth updateToken={updateToken}
           updateInflID={updateInflID}
           inflID={inflID}
@@ -133,10 +131,19 @@ function App() {
           setInflID={setInflID}
           inflID={inflID}
           />} />
-     <Route path="/inflHome/reviewPromo" element={<ReviewPromo 
+    <Route path="/inflHome/displayPromo" element={<DisplayPromo 
         updateToken={updateToken}
         setSessionToken={setSessionToken}
         sessiontoken={sessiontoken}
+        setInflID={setInflID}
+        inflID={inflID}
+         />} />
+        <Route path="/inflHome/reviewPromo" element={<ReviewPromo 
+        updateToken={updateToken}
+        setSessionToken={setSessionToken}
+        sessiontoken={sessiontoken}
+        setInflID={setInflID}
+        inflID={inflID}
          />} />
         </Routes>
 
