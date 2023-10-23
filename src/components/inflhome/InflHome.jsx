@@ -11,8 +11,6 @@ function InflHome( props ) {
 
     return (
         <>
-          <Nav setSessionToken={setSessionToken}
-        sessiontoken={sessiontoken} />
         <UpcomingPromos />
         </>
     )

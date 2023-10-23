@@ -54,6 +54,7 @@ function Auth(props) {
                         <Col md="6">
                             <InflSignup
                                 updateToken={props.updateToken}
+                                updateInflID={props.updateInflID}
 
                             />
 
@@ -63,7 +64,7 @@ function Auth(props) {
                         <Col md="6">
                             <InflLogin
                                 updateToken={props.updateToken}
-                                username={props.currentUsername}
+                                updateInflID={props.updateInflID}
 
                             />
                         </Col>

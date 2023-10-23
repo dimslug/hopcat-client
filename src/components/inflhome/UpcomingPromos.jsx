@@ -78,7 +78,7 @@ function UpcomingPromos() {
                             );
                             return (
                                 <tr
-                                    onClick={() => navigate(`/promo/${promos._id}`)}
+                                    onClick={() => navigate(`/displayPromo/${promos._id}`)}
                                     id='target'
                                 >
                                     <td>{promos.drinkID.name}</td>
@@ -127,7 +127,7 @@ function UpcomingPromos() {
                             );
                             return (
                                 <tr
-                                onClick={() => navigate(`/promo/${promos._id}`)}
+                                onClick={() => navigate(`/displayPromo/${promos._id}`)}
                                     id='target'
                                 >
                                     <td>{promos.drinkID.name}</td>

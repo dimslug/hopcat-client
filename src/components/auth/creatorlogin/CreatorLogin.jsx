@@ -5,21 +5,21 @@ import FullButton from '../../buttons/FullButton';
 import { baseURL } from '../../../environments'
 
 //! Login component to provide token from matching email and password
-function Login({ updateToken, updateCreatorID }, {}) {
+function Login({ updateToken, updateCreatorID }, { }) {
     let email = ''
     let password = ''
     const emailRef = useRef();
     const passwordRef = useRef();
     const navigate = useNavigate();
-      
-    const [ emailState, setEmailState ] = useState();
+
+    const [emailState, setEmailState] = useState();
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         email = emailRef.current.value;
         password = passwordRef.current.value;
         setEmailState(email)
-  
+
         let bodyObj = JSON.stringify({
             email, password
         })
@@ -27,7 +27,7 @@ function Login({ updateToken, updateCreatorID }, {}) {
         const url = `${baseURL}/creator/login`;
 
         try {
-            
+
             const res = await fetch(url, {
                 method: 'POST',
                 headers: {
@@ -37,15 +37,15 @@ function Login({ updateToken, updateCreatorID }, {}) {
             })
 
             const data = await res.json();
-            
+
             if (data.message === 'Success!') {
-               
-                
-                updateToken(data.token) 
+
+
+                updateToken(data.token)
                 updateCreatorID(data.creatorID)
                 navigate('/creator/frontpage')
-          
-            
+
+
             } else {
                 alert(data.message);
             }
@@ -54,33 +54,33 @@ function Login({ updateToken, updateCreatorID }, {}) {
             console.error(err.message)
         }
 
-       
+
     }
 
     return (
         <>
             <h2>Creator Login</h2>
             <Form onSubmit={handleSubmit}>
-            <FormGroup floating>
-          <Input
-            id="emailSignup"
-            innerRef={emailRef}
-            placeholder="your email here"
-            name="email"
-            type="email"
-          />
-          <Label for="emailSignup">email</Label>
-        </FormGroup>
-        <FormGroup floating>
-          <Input
-            id="passwordSignup"
-            innerRef={passwordRef}
-            placeholder="your password here"
-            name="password"
-            type="password"
-          />
-          <Label for="passwordSignup">Password</Label>
-        </FormGroup>
+                <FormGroup floating>
+                    <Input
+                        id="emailSignup"
+                        innerRef={emailRef}
+                        placeholder="your email here"
+                        name="email"
+                        type="email"
+                    />
+                    <Label for="emailSignup">email</Label>
+                </FormGroup>
+                <FormGroup floating>
+                    <Input
+                        id="passwordSignup"
+                        innerRef={passwordRef}
+                        placeholder="your password here"
+                        name="password"
+                        type="password"
+                    />
+                    <Label for="passwordSignup">Password</Label>
+                </FormGroup>
                 <FullButton>
                     <Button type='submit' color='dark'>Login</Button>
                 </FullButton>

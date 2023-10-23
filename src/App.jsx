@@ -15,6 +15,7 @@ import CreatorIndex from "./components/creator/CreatorIndex";
 import CreateIndex from "./components/createforms/CreateIndex";
 import EditIndex from "./components/editforms/EditIndex";
 import ReviewPromo from "./components/inflhome/ReviewPromo";
+import DisplayPromo from "./components/inflhome/DisplayPromo";
 
 
 function App() {
@@ -24,6 +25,8 @@ function App() {
   const [inflID, setInflID] = useState("")
 
   console.log("Token: ", sessiontoken);
+  console.log("Creator ID: ", creatorID);
+  console.log("Influencer ID: ", inflID)
 
   const updateToken = (newToken) => {
     localStorage.setItem("token", newToken);
@@ -59,13 +62,14 @@ function App() {
       {/* {sessiontoken !== "" ? (
       <Logout setSessionToken={setSessionToken} />
     ) : null} */}
-    <Nav setSessionToken={setSessionToken}
-          sessionToken={sessiontoken} />
+      <Nav setSessionToken={setSessionToken}
+        sessionToken={sessiontoken} />
 
       <Routes>
         <Route path="/" element={<Auth
           updateToken={updateToken}
           updateCreatorID={updateCreatorID}
+          updateInflID={updateInflID}
         />} />
 
         {/* </Routes>
@@ -122,25 +126,33 @@ function App() {
         }
         />
 
-        
 
-          <Route path="/" element={<Auth updateToken={updateToken}
+        <Route path="/" element={<Auth updateToken={updateToken}
           updateInflID={updateInflID}
           inflID={inflID}
-          />} />
-          <Route path="/inflHome" element={<InflHome 
-          updateToken={updateToken} 
+        />} />
+        <Route path="/inflHome" element={<InflHome
+          updateToken={updateToken}
           setInflID={setInflID}
           inflID={inflID}
-          />} />
-     <Route path="/inflHome/reviewPromo" element={<ReviewPromo 
-        updateToken={updateToken}
-        setSessionToken={setSessionToken}
-        sessiontoken={sessiontoken}
-         />} />
-        </Routes>
+        />} />
+        <Route path="/inflHome/displayPromo" element={<DisplayPromo
+          updateToken={updateToken}
+          setSessionToken={setSessionToken}
+          sessiontoken={sessiontoken}
+          setInflID={setInflID}
+          inflID={inflID}
+        />} />
+        <Route path="/inflHome/reviewPromo" element={<ReviewPromo
+          updateToken={updateToken}
+          setSessionToken={setSessionToken}
+          sessiontoken={sessiontoken}
+          setInflID={setInflID}
+          inflID={inflID}
+        />} />
+      </Routes>
 
-        <Footer />
+      <Footer />
     </div>
 
   );
