@@ -1,23 +1,27 @@
 import React, { useState, useRef } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Form, FormGroup, Input, Label, Button, Row } from 'reactstrap';
+import { Form, FormGroup, Input, Label, Button, Row, Nav } from 'reactstrap';
 import { TEInput } from "tw-elements-react"
 import FullButton from '../buttons/FullButton';
 import { baseURL } from "../../environments";
+import HopSpotNav from '../nav/Nav';
 
 export default function ReviewPromo(props) {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
-    const influencerID = queryParams.get('influencer_id');
+    const inflID = localStorage.getItem('influencerID');
     const promoID = queryParams.get('promo_id');
-    const sessiontoken = props.sessiontoken;
-    const inflID = props.inflID
+    const sessiontoken = localStorage.getItem('token')
+   
 
     const navigate = useNavigate();
 
  //! UseStates
   const [reviewText, setReviewText] = useState('')
   const [rating, setRating] = useState(0);
+  const [drinkID, setDrinkID] = useState()
+  const [creatorID, setCreatorID] = useState()
+  
 
     console.log(promoID)
     console.log(inflID)
@@ -28,24 +32,22 @@ export default function ReviewPromo(props) {
       console.log(rating)
     }
   
+    //! HandleSubmit
     const handleSubmit = async (e) => {
       e.preventDefault();
-      const promoID = promoID
-      const influencerID = influencerID
-      const rating = rating;
       const description = descriptionRef.current.value;
-      const photo = photoRef.current.value;
+      // const photo = photoRef.current.value;
   
       let body = JSON.stringify({
         promoID,
-        influencerID,
+        inflID,
         rating,
         description,
-        photo,
+        // photo,
   
       });
-  
-      let url = `${baseURL}/reviews`;
+      console.log(body)
+      let url = `${baseURL}/reviews/review`;
   
       let headers = new Headers();
       headers.append(`Content-Type`, `application/json`);
@@ -62,11 +64,70 @@ export default function ReviewPromo(props) {
         const data = await res.json();
   
         console.log(data);
-        navigate("/inflHome");
+        getDrinkID()
+       
       } catch (err) {
         console.error(err.message);
       }
     };
+
+    //! UpdateDrink -- Step One
+    const getDrinkID = async () => {
+      const url = `${baseURL}/promo/getone/${promoID}`;
+      const requestOption = {
+      method: "GET",
+      headers: new Headers({
+        Authorization: sessiontoken,
+      }),
+    };
+    try {
+      const res = await fetch(url, requestOption);
+      const data = await res.json();
+      setDrinkID(data.results.drinkID);
+      setCreatorID(data.results.creatorID)
+      
+    } catch (err) {
+      console.error(err.message);
+    } finally {
+        updateDrinkReviewDB(drinkID)
+      
+    }
+  };
+    
+ //! UpdateDrink -- Step Two
+ const updateDrinkReviewDB = async (drinkID) => {
+ 
+const requestBody = {};
+
+  requestBody.creatorID = creatorID
+  requestBody.drinkID = drinkID
+  requestBody.ratings = rating
+  requestBody.numRatings = 1
+
+  console.log(`Data from form payload : ${JSON.stringify(requestBody)}`);
+
+  let url = `${baseURL}/drink/edit/${drinkID}`;
+
+  let headers = new Headers();
+  headers.append(`Content-Type`, `application/json`);
+  headers.append("Authorization", sessiontoken);
+
+  const requestOptions = {
+    headers: headers,
+    body: JSON.stringify(requestBody),
+    method: "PATCH",
+  };
+
+  try {
+    const res = await fetch(url, requestOptions);
+    const data = await res.json();
+
+   
+    navigate("/inflHome");
+  } catch (err) {
+    console.error(err.message);
+  }
+};
   
     const descriptionRef = useRef();
     const ratingRef = useRef();
@@ -74,6 +135,8 @@ export default function ReviewPromo(props) {
     
   return (
     <>
+    <HopSpotNav
+   inflID={inflID} />
     
     Review Promo
     <Form onSubmit={handleSubmit}>

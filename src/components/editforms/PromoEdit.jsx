@@ -103,9 +103,7 @@ const handleAddressSelected = (address) => {
    
     return (
       <>
-      <DisplayPromo 
-      promoID={promoID}
-      />
+    
     
       <Form onSubmit={handleSubmit}>
         <FormGroup floating>

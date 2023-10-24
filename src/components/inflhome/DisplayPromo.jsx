@@ -12,13 +12,15 @@ import {
   import { useNavigate, useLocation } from "react-router-dom";
 import { baseURL } from "../../environments";
 import PlaceComponent from "../placecomponent/PlaceComponent";
+import HopSpotNav from "../nav/Nav";
 
-export default function DisplayPromo() {
+export default function DisplayPromo(props) {
   const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const promoID = queryParams.get('promo_id');
    
-    console.log(promoID);
+   
+    
  
   
     const navigate = useNavigate();
@@ -27,12 +29,16 @@ export default function DisplayPromo() {
   const [promo, setPromo] = useState([]);
   const [loading, setLoading] = useState(true);
   const [sessiontoken, setSessionToken] = useState();
+  const [inflID, setInflID] = useState()
 
 
   //! useEffects
 
   useEffect(() =>
-  {setSessionToken(localStorage.token);}, []
+  {
+    setSessionToken(localStorage.token)
+    setInflID(localStorage.influencerID);
+  }, []
   )
 
   useEffect(() => {
@@ -120,7 +126,7 @@ export default function DisplayPromo() {
                         color="success"
                         onClick={() =>
                           navigate(
-                            `/inflHome/reviewPromo?drink_id=${promo[0].drinkID}&promo_id=${promo[0]._id}`
+                            `/inflHome/reviewPromo?promo_id=${promo[0]._id}`
                           )
                         }
                       >
@@ -133,9 +139,13 @@ export default function DisplayPromo() {
     );                 
   };
 
+  console.log(promoID);
+    console.log(inflID);
 
   return (
     <>
+    <HopSpotNav
+     inflID={inflID} />
       {loading ? (
         
         <p>Loading...</p>
