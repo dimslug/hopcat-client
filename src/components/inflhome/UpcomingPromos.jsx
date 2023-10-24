@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Table, Tooltip, Button, Collapse } from 'reactstrap'
 import { baseURL } from "../../environments";
 
-function UpcomingPromos() {
+function UpcomingPromos(props) {
     const navigate = useNavigate();
 
     const [tooltipOpen, setTooltipOpen] = useState(false);
@@ -20,6 +20,9 @@ function UpcomingPromos() {
     const onExiting = () => setStatus(false);
     const onExited = () => setStatus(false);
 
+    const inflID = props.inflID;
+
+    console.log(inflID)
     const [promosData, setPromosData] = useState([])
 
     // fetch promo data from backend and map over it to populate table

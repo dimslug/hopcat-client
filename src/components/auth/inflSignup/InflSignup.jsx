@@ -3,7 +3,7 @@ import { Form, FormGroup, Input, Label, Button } from 'reactstrap'
 import { useNavigate } from 'react-router-dom';
 import FullButton from '../../buttons/FullButton';
 
-function InflSignup( {updateToken} ) {
+function InflSignup( {updateToken, updateInflID } ) {
 
     const usernameRef = useRef();
     const emailRef = useRef();
@@ -44,6 +44,7 @@ function InflSignup( {updateToken} ) {
 
             if(data.message === 'success') {
                 updateToken(data.token)
+                updateInflID(data.influencerID)
                 navigate('/inflHome')
             } else {
                 alert(data.message);

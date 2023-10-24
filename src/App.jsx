@@ -66,6 +66,8 @@ function App() {
         <Route path="/" element={<Auth
           updateToken={updateToken}
           updateCreatorID={updateCreatorID}
+          inflID={inflID}
+          updateInflID={updateInflID}
         />} />
 
         {/* </Routes>
@@ -76,6 +78,7 @@ function App() {
           sessiontoken={sessiontoken}
           setCreatorID={setCreatorID}
           creatorID={creatorID}
+          currentPage={'drinks'}
         />
         }
         />
@@ -122,10 +125,10 @@ function App() {
         }
         />
 
-          <Route path="/" element={<Auth updateToken={updateToken}
+          {/* <Route path="/" element={<Auth updateToken={updateToken}
           updateInflID={updateInflID}
           inflID={inflID}
-          />} />
+          />} /> */}
           <Route path="/inflHome" element={<InflHome 
           updateToken={updateToken} 
           setInflID={setInflID}

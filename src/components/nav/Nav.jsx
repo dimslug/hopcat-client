@@ -25,15 +25,19 @@ function HopSpotNav(props) {
   const setSessionToken = props.setSessionToken
   const creatorID = props.creatorID
   const setCreatorID = props.setCreatorID
+  const inflID = props.inflID
+  const setInflID = props.setInflID
 
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
 
+  const navbarBrandHref = creatorID ? '/creator/frontpage' : '/inflHome';
+
   return (
     <>
       <Navbar className="navbar-custom navbarcustom" {...props}>
-        <NavbarBrand className="navbarcustom navbar-brand" href="/">HopSpot</NavbarBrand>
+        <NavbarBrand className="navbarcustom navbar-brand" href={navbarBrandHref}>HopSpot</NavbarBrand>
         <NavbarToggler className="navbarcustom navbar-toggler" onClick={toggle}>
           <div className='navbar-toggler-icon'></div>
         </NavbarToggler>
@@ -42,12 +46,16 @@ function HopSpotNav(props) {
             <NavItem>
               <NavLink href="/profile/">Profile</NavLink>
             </NavItem>
-            <NavItem>
+            {creatorID && (
+              <>
+               <NavItem>
               <NavLink href="/creator/drinks">Drinks</NavLink>
             </NavItem>
             <NavItem>
               <NavLink href="/creator/promos">Promos</NavLink>
             </NavItem>
+              </>
+            )}
             <NavItem>
               {/* <NavLink href="https://github.com/reactstrap/reactstrap">
                 GitHub
@@ -67,8 +75,12 @@ function HopSpotNav(props) {
             {/* <NavbarText>Simple Text</NavbarText> */}
             {sessiontoken !== "" ? (
               <Logout
+                sessiontoken={sessiontoken}
                 setSessionToken={setSessionToken}
+                creatorID={creatorID}
                 setCreatorID={setCreatorID}
+                inflID={inflID}
+                setInflID={setInflID}
               />
             ) : null}
           </Nav >

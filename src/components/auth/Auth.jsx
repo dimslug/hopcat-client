@@ -7,6 +7,8 @@ import { Button, Col, Container, Row } from 'reactstrap';
 
 function Auth(props) {
 
+    console.log(props)
+
     const [button, setButton] = useState('Signup')
     const [typeButton, setTypeButton] = useState('Creator')
 
@@ -54,7 +56,7 @@ function Auth(props) {
                         <Col md="6">
                             <InflSignup
                                 updateToken={props.updateToken}
-
+                                updateInflID={props.updateInflID}
                             />
 
                         </Col>
@@ -63,6 +65,7 @@ function Auth(props) {
                         <Col md="6">
                             <InflLogin
                                 updateToken={props.updateToken}
+                                updateInflID={props.updateInflID}
                                 username={props.currentUsername}
 
                             />
