@@ -2,9 +2,9 @@
   text-align: center;
 }
 body {
-  background-image: radial-gradient(#00FFFF 20%, transparent 20%),
-     radial-gradient(#00FFFF 20%, transparent 20%);
-  background-color: #fafafa;
+  background-image: radial-gradient(#FEC47A 90%, transparent 20%),
+     radial-gradient(#FEC47A 30%, transparent 10%);
+  background-color: #000000;
   background-position: 0 0, 50px 50px;
   background-size: 10px 10px;
   height: 20px;
