@@ -131,4 +131,4 @@ function InflSignup( {updateToken} ) {
     )
 }
 
-export default InflSignup
+export default InflSignupl
