@@ -136,6 +136,7 @@ export default function DrinkAccordion({
       </li>
       ))}
       </ul>
+      <h6>Each Dollar Sign Represents $5</h6>  
                   </CardText>
                   <Button
                     color="info"
