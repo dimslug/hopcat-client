@@ -121,6 +121,7 @@ export default function DrinkEdit(props) {
     for="photoRef"
     class="tw-mb-2 tw-inline-block tw-text-neutral-700 tw-dark:text-neutral-200"
     >Photo
+   
     </label>
   <input
     class="tw-relative tw-m-0 tw-block tw-w-full tw-min-w-0 tw-flex-auto tw-rounded tw-border tw-border-solid tw-border-neutral-300 tw-bg-clip-padding tw-px-3 tw-py-[0.32rem] tw-text-base tw-font-normal tw-text-neutral-700 tw-transition tw-duration-300 tw-ease-in-out tw-file:-mx-3 tw-file:-my-[0.32rem] tw-file:overflow-hidden tw-file:rounded-none tw-file:border-0 tw-file:border-solid tw-file:border-inherit tw-file:bg-neutral-100 tw-file:px-3 tw-file:py-[0.32rem] tw-file:text-neutral-700 tw-file:transition tw-file:duration-150 tw-file:ease-in-out tw-file:[border-inline-end-width:1px] tw-file:[margin-inline-end:0.75rem] tw-hover:file:bg-neutral-200 tw-focus:border-primary tw-focus:text-neutral-700 tw-focus:shadow-te-primary tw-focus:outline-none tw-dark:border-neutral-600 tw-dark:text-neutral-200 tw-dark:file:bg-neutral-700 tw-dark:file:text-neutral-100 tw-dark:focus:border-primary"
@@ -129,7 +130,7 @@ export default function DrinkEdit(props) {
 </div>
 
 <Label>Price</Label>
-    
+
     <ul className="tw-my-1 tw-flex tw-justify-center tw-list-none tw-gap-1 tw-p-0" data-te-rating-init>
       {Array.from({ length: 5 }).map((_, index) => (
   <li key={index}>
@@ -147,8 +148,9 @@ export default function DrinkEdit(props) {
     </span>
   </li>
   ))}
+
   </ul>
-       
+  <h6>Each Dollar Sign Represents $5</h6>     
        
         <FullButton>
           <Button color="success">Edit Drink</Button>

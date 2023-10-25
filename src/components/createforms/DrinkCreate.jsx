@@ -169,6 +169,7 @@ export default function DrinkCreate(props) {
       </li>
       ))}
       </ul>
+      <h6>Each Dollar Sign Represents $5</h6>  
     <FullButton>
           <Button color="success">Add Drink</Button>
         </FullButton> 
