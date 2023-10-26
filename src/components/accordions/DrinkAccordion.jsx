@@ -26,6 +26,9 @@ export default function DrinkAccordion({
 }) {
 
   setCreatorID(localStorage.creatorID);
+  let avgRating = ''
+  let sum = 0
+  let i = 0
 
   const navigate = useNavigate()
   const toggle = (id) => {
@@ -46,6 +49,8 @@ export default function DrinkAccordion({
 
   //! Fetch Drinks
   const fetchDrinks = async () => {
+    let sum = 0
+    let i = 0
     const url = `${baseURL}/drink/creations/${localStorage.creatorID}`;
     const requestOption = {
       method: "GET",
@@ -56,10 +61,9 @@ export default function DrinkAccordion({
     try {
       const res = await fetch(url, requestOption);
       const data = await res.json();
-      // drinks = data.results;
+   
       setDrinks(data.results);
-      // console.log(data);
-      // console.log(drinks);
+    
       setLoading(false);
     } catch (err) {
       console.error(err.message);
@@ -115,9 +119,35 @@ export default function DrinkAccordion({
                     <ul>
                       <li>{drink.cat1}</li>
                       <li>{drink.cat2}</li>
-                      <li>{drink.cat3}</li>
-                    </ul>
-                    <p>Price Range: {drink.price}</p>
+                      </ul>
+                      <p>Current Average Rating</p>
+                    
+                      
+    {drink.ratings.forEach( num => {
+        sum += num;
+      })}
+      
+     { avgRating = sum / drink.ratings.length }
+    <ul className="tw-my-1 tw-flex tw-justify-center tw-list-none tw-gap-1 tw-p-0" data-te-rating-init>
+      {Array.from({ length: 5 }).map((_, index) => (
+  <li key={index}>
+  <span
+  className={`tw-text-primary hover:tw-outline-none hover:tw-outline-primary hover:tw-transition tw-duration-300 [&>svg]:h-5 [&>svg]:w-5 ${
+    avgRating >= index + 1 ? "text-warning" : "tw-outline tw-outline-primary"
+  }`}
+  data-te-rating-icon-ref
+  // onClick={() => handleRating(index + 1)}
+  >
+     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-12 h-12">
+<path d="M10.464 8.746c.227-.18.497-.311.786-.394v2.795a2.252 2.252 0 01-.786-.393c-.394-.313-.546-.681-.546-1.004 0-.323.152-.691.546-1.004zM12.75 15.662v-2.824c.347.085.664.228.921.421.427.32.579.686.579.991 0 .305-.152.671-.579.991a2.534 2.534 0 01-.921.42z" />
+<path fill-rule="evenodd" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+</svg>
+    </span>
+  </li>
+  ))}
+  </ul>
+  {sum = 0}            
+                    <p>Price Range</p>
                     <ul className="tw-my-1 tw-flex tw-justify-center tw-list-none tw-gap-1 tw-p-0" data-te-rating-init>
           {Array.from({ length: 5 }).map((_, index) => (
       <li key={index}>
