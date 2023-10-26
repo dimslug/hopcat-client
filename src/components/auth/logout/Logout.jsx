@@ -19,19 +19,8 @@ function Logout(props) {
 
   const signout = () => {
 
-   if (creatorID)  
-     {
-      localStorage.removeItem("creatorID")
-      // setCreatorID("")
-    }
-    if (inflID)  
-    {
-     localStorage.removeItem("influencerID")
-     // setInflID("")
-   }
-     
-    
-
+    localStorage.removeItem("creatorID")
+    localStorage.removeItem("influencerID")
     localStorage.removeItem("token");
       // setSessionToken("");
    

@@ -56,6 +56,7 @@ function Signup(props) {
 
       if (data.message === "Success!") {
         props.updateToken(data.token);
+        props.updateCreatorID(data.creatorID)
         navigate("/creator/frontpage");
       } else {
         alert(data.message);

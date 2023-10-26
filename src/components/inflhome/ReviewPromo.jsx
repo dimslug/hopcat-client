@@ -25,6 +25,8 @@ export default function ReviewPromo(props) {
 
     console.log(promoID)
     console.log(inflID)
+    let promoCreatorID = ''
+    let promoDrinkID = ''
 
 //! Rating Selector event handlers
     const handleRating = (value) => {
@@ -83,30 +85,32 @@ export default function ReviewPromo(props) {
     try {
       const res = await fetch(url, requestOption);
       const data = await res.json();
-      setDrinkID(data.results.drinkID);
-      setCreatorID(data.results.creatorID)
+      console.log(data.results[0].drinkID)
+      promoDrinkID = (data.results[0].drinkID);
+      promoCreatorID = (data.results[0].creatorID)
       
     } catch (err) {
       console.error(err.message);
     } finally {
-        updateDrinkReviewDB(drinkID)
+        updateDrinkReviewDB()
       
     }
   };
     
  //! UpdateDrink -- Step Two
- const updateDrinkReviewDB = async (drinkID) => {
+ const updateDrinkReviewDB = async () => {
  
+  console.log('inside updateDrinkReviewDB :', promoDrinkID)
 const requestBody = {};
 
-  requestBody.creatorID = creatorID
-  requestBody.drinkID = drinkID
+  requestBody.creatorID = promoCreatorID
+  // requestBody.drinkID = promoDrinkID
   requestBody.ratings = rating
-  requestBody.numRatings = 1
+  
 
   console.log(`Data from form payload : ${JSON.stringify(requestBody)}`);
 
-  let url = `${baseURL}/drink/edit/${drinkID}`;
+  let url = `${baseURL}/drink/review/${promoDrinkID}`;
 
   let headers = new Headers();
   headers.append(`Content-Type`, `application/json`);
@@ -122,7 +126,7 @@ const requestBody = {};
     const res = await fetch(url, requestOptions);
     const data = await res.json();
 
-   
+    console.log(data.results)
     navigate("/inflHome");
   } catch (err) {
     console.error(err.message);
